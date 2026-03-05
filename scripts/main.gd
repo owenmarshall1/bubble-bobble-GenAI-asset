@@ -64,6 +64,7 @@ func restart_game():
 		enemy.queue_free()
 	start_game()
 	score = 0
+	score_label.text = "Score: %d" % score
 
 func enemy_killed():
 	enemies_killed += 1

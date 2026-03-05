@@ -5,7 +5,7 @@ class_name Enemy
 @onready var rage_sound = $RageSound
 
 @export var speed := 150
-var direction := -1
+var direction := 1
 var gravity := 900
 enum State { ACTIVE, TRAPPED }
 var state: State = State.ACTIVE
@@ -47,7 +47,7 @@ func patrol(delta):
 
 		if wall_only:
 			direction *= -1
-			$Sprite2D.flip_h = direction > 0
+			$Sprite2D.flip_h = direction < 0
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and state == State.ACTIVE:

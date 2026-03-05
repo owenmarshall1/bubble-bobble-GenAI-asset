@@ -9,15 +9,15 @@
 [ext_resource type="Script" uid="uid://dri083jl7vksc" path="res://scripts/player.gd" id="6_nxtc6"]
 [ext_resource type="PackedScene" uid="uid://sewilaqm2h6t" path="res://scenes/Bubble.tscn" id="7_jlsqs"]
 [ext_resource type="Texture2D" uid="uid://bq5f57dd7q7yw" path="res://assets_new/player.png" id="9_nfivy"]
-[ext_resource type="Texture2D" uid="uid://bri45p7q4pdsh" path="res://assets/images/bg0.png" id="9_q8u5g"]
-[ext_resource type="Texture2D" uid="uid://cc0nqu0cjbl1t" path="res://assets/images/health.png" id="10_bjd11"]
 [ext_resource type="AudioStream" uid="uid://n8e47lrdf3y5" path="res://assets_new/death.mp3" id="10_ft6cd"]
 [ext_resource type="AudioStream" uid="uid://cyp0ukfjp4t1o" path="res://assets_new/hit.mp3" id="11_bb450"]
-[ext_resource type="Texture2D" uid="uid://bipk2lpls8crw" path="res://assets/images/title.png" id="11_qmy6f"]
 [ext_resource type="AudioStream" uid="uid://13iq810vagng" path="res://assets_new/blow.mp3" id="12_bb450"]
-[ext_resource type="AudioStream" uid="uid://cjpwytx6x3u8s" path="res://assets/music/theme.ogg" id="12_bjd11"]
-[ext_resource type="Texture2D" uid="uid://d7b2guvv4un2" path="res://assets/images/over.png" id="12_mwfav"]
 [ext_resource type="AudioStream" uid="uid://cdxf8liicribk" path="res://assets_new/pop.mp3" id="13_nfivy"]
+[ext_resource type="Texture2D" uid="uid://dgnpum1q1rrhc" path="res://assets_new/heart.png" id="14_nfivy"]
+[ext_resource type="Texture2D" uid="uid://dce6gdf2vitsw" path="res://assets_new/Menu.png" id="15_nfivy"]
+[ext_resource type="Texture2D" uid="uid://cmm70vix3kaa2" path="res://assets_new/gameover.png" id="16_nfivy"]
+[ext_resource type="Texture2D" uid="uid://bpylr2v4v0w3h" path="res://assets_new/bg1.png" id="17_nfivy"]
+[ext_resource type="AudioStream" uid="uid://brw7fgc2wbxhg" path="res://assets_new/idk.mp3" id="18_1nqs0"]
 [ext_resource type="AudioStream" uid="uid://dg6k8ittylqsb" path="res://assets_new/heal.mp3" id="18_nfivy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jlsqs"]
@@ -82,8 +82,8 @@ position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_nxtc6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1466621663]
-position = Vector2(1.5000083, -4.499991)
-scale = Vector2(0.09, 0.09)
+position = Vector2(1.5000083, -6.7499866)
+scale = Vector2(0.09, 0.094500005)
 texture = ExtResource("9_nfivy")
 
 [node name="Sounds" type="Node2D" parent="Player" unique_id=2112367916]
@@ -113,30 +113,32 @@ theme_override_font_sizes/font_size = 32
 
 [node name="Heart1" type="TextureRect" parent="HUD/Hearts" unique_id=169675982]
 z_index = 2
-offset_left = 5.0
-offset_top = 437.0
-offset_right = 49.0
-offset_bottom = 477.0
-texture = ExtResource("10_bjd11")
+offset_left = 4.0
+offset_top = 434.0
+offset_right = 50.0
+offset_bottom = 480.0
+texture = ExtResource("14_nfivy")
+expand_mode = 1
 
-[node name="Heart2" type="TextureRect" parent="HUD/Hearts" unique_id=388071033]
+[node name="Heart2" type="TextureRect" parent="HUD/Hearts" unique_id=1023095213]
 z_index = 2
-offset_left = 47.0
-offset_top = 437.0
-offset_right = 91.0
-offset_bottom = 477.0
-texture = ExtResource("10_bjd11")
+offset_left = 44.0
+offset_top = 434.0
+offset_right = 90.0
+offset_bottom = 480.0
+texture = ExtResource("14_nfivy")
+expand_mode = 1
 
-[node name="Heart3" type="TextureRect" parent="HUD/Hearts" unique_id=1044883199]
+[node name="Heart3" type="TextureRect" parent="HUD/Hearts" unique_id=1147313883]
 z_index = 2
-offset_left = 88.0
-offset_top = 437.0
-offset_right = 132.0
-offset_bottom = 477.0
-texture = ExtResource("10_bjd11")
+offset_left = 84.0
+offset_top = 434.0
+offset_right = 130.0
+offset_bottom = 480.0
+texture = ExtResource("14_nfivy")
+expand_mode = 1
 
 [node name="MenuLabel" type="Label" parent="HUD" unique_id=683973058]
-visible = false
 offset_left = 66.0
 offset_top = 93.0
 offset_right = 318.0
@@ -147,8 +149,8 @@ layout_mode = 0
 offset_left = -65.0
 offset_top = -96.0
 offset_right = 735.0
-offset_bottom = 618.0
-texture = ExtResource("11_qmy6f")
+offset_bottom = 386.0
+texture = ExtResource("15_nfivy")
 
 [node name="GameOverLabel" type="Label" parent="HUD" unique_id=948355097]
 visible = false
@@ -159,12 +161,12 @@ offset_bottom = 23.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("12_mwfav")
+texture = ExtResource("16_nfivy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1039008301]
 z_index = -5
 position = Vector2(400, 240)
-texture = ExtResource("9_q8u5g")
+texture = ExtResource("17_nfivy")
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=746686883]
 collision_mask = 0
@@ -179,8 +181,8 @@ shape = SubResource("RectangleShape2D_lhr70")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1686351698]
 position = Vector2(66, 93)
-stream = ExtResource("12_bjd11")
-volume_db = -13.419
+stream = ExtResource("18_1nqs0")
+volume_db = 0.839
 autoplay = true
 
 [node name="HealSound" type="AudioStreamPlayer2D" parent="." unique_id=440883270]
