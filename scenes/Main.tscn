@@ -1,25 +1,27 @@
 [gd_scene format=3 uid="uid://dlp2jqwnoxa0k"]
 
-[ext_resource type="Texture2D" uid="uid://cad7icnh7b75a" path="res://assets/images/block0.png" id="1_rarhs"]
 [ext_resource type="Script" uid="uid://c2t0gla4vqo5y" path="res://scripts/main.gd" id="1_vcsgt"]
 [ext_resource type="PackedScene" uid="uid://cqj4xclthho2h" path="res://scenes/enemies.tscn" id="2_lhr70"]
 [ext_resource type="Texture2D" uid="uid://cq3yw1tm0egy0" path="res://assets/images/block1.png" id="2_vcsgt"]
 [ext_resource type="Texture2D" uid="uid://boa434qpjd1uw" path="res://assets/images/block2.png" id="3_c01mt"]
+[ext_resource type="Texture2D" uid="uid://ds51mo7rx8jvu" path="res://assets_new/Tile.png" id="3_nfivy"]
 [ext_resource type="Texture2D" uid="uid://blef85ctacfp3" path="res://assets/images/block3.png" id="4_nxtc6"]
 [ext_resource type="Script" uid="uid://dri083jl7vksc" path="res://scripts/player.gd" id="6_nxtc6"]
 [ext_resource type="PackedScene" uid="uid://sewilaqm2h6t" path="res://scenes/Bubble.tscn" id="7_jlsqs"]
-[ext_resource type="Texture2D" uid="uid://dcvslqu2g2jnq" path="res://assets/images/stand1.png" id="9_ft6cd"]
+[ext_resource type="Texture2D" uid="uid://bq5f57dd7q7yw" path="res://assets_new/player.png" id="9_nfivy"]
 [ext_resource type="Texture2D" uid="uid://bri45p7q4pdsh" path="res://assets/images/bg0.png" id="9_q8u5g"]
-[ext_resource type="AudioStream" uid="uid://bcgt2hs0rx1ul" path="res://assets/sounds/ouch0.ogg" id="10_3p2gp"]
 [ext_resource type="Texture2D" uid="uid://cc0nqu0cjbl1t" path="res://assets/images/health.png" id="10_bjd11"]
-[ext_resource type="AudioStream" uid="uid://d4hdb1g0soud6" path="res://assets/sounds/die0.ogg" id="10_cvmbd"]
+[ext_resource type="AudioStream" uid="uid://n8e47lrdf3y5" path="res://assets_new/death.mp3" id="10_ft6cd"]
+[ext_resource type="AudioStream" uid="uid://cyp0ukfjp4t1o" path="res://assets_new/hit.mp3" id="11_bb450"]
 [ext_resource type="Texture2D" uid="uid://bipk2lpls8crw" path="res://assets/images/title.png" id="11_qmy6f"]
+[ext_resource type="AudioStream" uid="uid://13iq810vagng" path="res://assets_new/blow.mp3" id="12_bb450"]
 [ext_resource type="AudioStream" uid="uid://cjpwytx6x3u8s" path="res://assets/music/theme.ogg" id="12_bjd11"]
 [ext_resource type="Texture2D" uid="uid://d7b2guvv4un2" path="res://assets/images/over.png" id="12_mwfav"]
-[ext_resource type="AudioStream" uid="uid://snq0i2prcqib" path="res://assets/sounds/bonus0.ogg" id="17_ft6cd"]
+[ext_resource type="AudioStream" uid="uid://cdxf8liicribk" path="res://assets_new/pop.mp3" id="13_nfivy"]
+[ext_resource type="AudioStream" uid="uid://dg6k8ittylqsb" path="res://assets_new/heal.mp3" id="18_nfivy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jlsqs"]
-texture = ExtResource("1_rarhs")
+texture = ExtResource("3_nfivy")
 texture_region_size = Vector2i(25, 25)
 0:0/next_alternative_id = 2
 0:0/0 = 0
@@ -41,6 +43,10 @@ texture = ExtResource("4_nxtc6")
 texture_region_size = Vector2i(25, 25)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1nqs0"]
+texture = ExtResource("3_nfivy")
+texture_region_size = Vector2i(25, 25)
+
 [sub_resource type="TileSet" id="TileSet_bjd11"]
 tile_size = Vector2i(25, 25)
 physics_layer_0/collision_layer = 1
@@ -48,9 +54,10 @@ sources/0 = SubResource("TileSetAtlasSource_jlsqs")
 sources/1 = SubResource("TileSetAtlasSource_q8u5g")
 sources/2 = SubResource("TileSetAtlasSource_lhr70")
 sources/3 = SubResource("TileSetAtlasSource_wp0k4")
+sources/4 = SubResource("TileSetAtlasSource_1nqs0")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxtc6"]
-size = Vector2(58, 59)
+size = Vector2(60, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhr70"]
 size = Vector2(60, 1219)
@@ -75,15 +82,23 @@ position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_nxtc6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1466621663]
-texture = ExtResource("9_ft6cd")
+position = Vector2(1.5000083, -4.499991)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("9_nfivy")
 
 [node name="Sounds" type="Node2D" parent="Player" unique_id=2112367916]
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="Player/Sounds" unique_id=335478880]
-stream = ExtResource("10_cvmbd")
+stream = ExtResource("10_ft6cd")
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="Player/Sounds" unique_id=1947592885]
-stream = ExtResource("10_3p2gp")
+stream = ExtResource("11_bb450")
+
+[node name="BlowSound" type="AudioStreamPlayer2D" parent="Player/Sounds" unique_id=1618476655]
+stream = ExtResource("12_bb450")
+
+[node name="PopSound" type="AudioStreamPlayer2D" parent="Player/Sounds" unique_id=1233302328]
+stream = ExtResource("13_nfivy")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1793531774]
 
@@ -121,6 +136,7 @@ offset_bottom = 477.0
 texture = ExtResource("10_bjd11")
 
 [node name="MenuLabel" type="Label" parent="HUD" unique_id=683973058]
+visible = false
 offset_left = 66.0
 offset_top = 93.0
 offset_right = 318.0
@@ -135,6 +151,7 @@ offset_bottom = 618.0
 texture = ExtResource("11_qmy6f")
 
 [node name="GameOverLabel" type="Label" parent="HUD" unique_id=948355097]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 
@@ -146,7 +163,7 @@ texture = ExtResource("12_mwfav")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1039008301]
 z_index = -5
-position = Vector2(401, 241)
+position = Vector2(400, 240)
 texture = ExtResource("9_q8u5g")
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=746686883]
@@ -167,4 +184,4 @@ volume_db = -13.419
 autoplay = true
 
 [node name="HealSound" type="AudioStreamPlayer2D" parent="." unique_id=440883270]
-stream = ExtResource("17_ft6cd")
+stream = ExtResource("18_nfivy")

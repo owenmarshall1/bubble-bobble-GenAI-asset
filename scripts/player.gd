@@ -19,6 +19,8 @@ var can_shoot := false
 
 @onready var hit_sound = $Sounds/HitSound
 @onready var death_sound = $Sounds/DeathSound
+@onready var blow_sound = $Sounds/BlowSound
+@onready var pop_sound = $Sounds/PopSound
 
 @onready var hearts := $"/root/Main/HUD/Hearts".get_children()
 var health := 3
@@ -89,6 +91,7 @@ func take_damage(from_position: Vector2):
 	is_invincible = false
 
 func shoot_bubble():
+	blow_sound.play()
 	if bubble_scene and can_shoot:
 		var bubble = bubble_scene.instantiate()
 		bubble.position = position + Vector2(direction * 20, -10)
@@ -110,6 +113,7 @@ func check_pop_bubble():
 				pop_bubble(bubble)
 
 func pop_bubble(bubble: Area2D) -> void:
+	pop_sound.play()
 	if bubble.trapped_enemy:
 		var gm = get_node("/root/Main")
 			
